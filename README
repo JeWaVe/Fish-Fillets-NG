@@ -17,10 +17,13 @@ Library SDL_image (PNG support)
 Library SDL_ttf (TrueType UTF-8 fonts)
 - libSDL_ttf, http://www.libsdl.org/projects/SDL_ttf/
 
-Library LUA (script language, used for debug console, configuration, levels,...)
-- liblua50, www.lua.org
-- liblualib50
-
+Compile Lua
+- go to lua-5.1.5 (included in repo for ease of use)
+- `sudo make linux`
+- `sudo make install`
+- create liblualib.a : 
+   `ar rcs src/liblualib.a src/lbaselib.o src/ldblib.o src/liolib.o src/lmathlib.o src/loslib.o src/ltablib.o src/lstrlib.o src/loadlib.o src/linit.o`
+- `sudo cp src/liblualib.a /usr/local/lib/`
 
 How to run
 ==========
@@ -29,9 +32,7 @@ I. Compile
 ----------
 
 - Compile the game:
-$ tar xzf fillets-ng.tar.gz
-$ cd fillets-ng
-$ ./configure
+$ ./configure --with-prefix=/usr/local/lib/ (or where lua5.1.5 is installed)
 $ make
 $ make install
 
